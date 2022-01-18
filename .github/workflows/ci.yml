@@ -17,3 +17,23 @@ jobs:
       -
         name: Run
         run: ./hack/lint
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        GO_VERSION:
+          - 1.17
+          - 1.18beta1
+    env:
+      GO_VERSION: ${{ matrix.GO_VERSION }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker/setup-buildx-action@v1
+      -
+        name: Run local
+        run: |
+          docker buildx bake binary
+          ./bin/amd64variant
+      - name: Build all
+        run: docker buildx bake all-arch
