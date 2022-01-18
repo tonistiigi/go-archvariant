@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -ex
+
+docker buildx build --file ./hack/dockerfiles/lint.Dockerfile "$@" . 
