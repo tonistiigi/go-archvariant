@@ -29,37 +29,37 @@ const (
 )
 
 const (
-	bmi1      = 3
-	avx2      = 5
-	bmi2      = 8
-	avx512_f  = 16
-	avx512_dq = 17
-	avx512_cd = 28
-	avx512_bw = 30
-	avx512_vl = 31
+	bmi1     = 3
+	avx2     = 5
+	bmi2     = 8
+	avx512F  = 16
+	avx512Dq = 17
+	avx512Cd = 28
+	avx512Bw = 30
+	avx512Vl = 31
 
 	v3ExtFeaturesBX = 1<<bmi1 | 1<<avx2 | 1<<bmi2
-	v4ExtFeaturesBX = v3ExtFeaturesBX | 1<<avx512_f | 1<<avx512_dq | 1<<avx512_cd | 1<<avx512_bw | 1<<avx512_vl
+	v4ExtFeaturesBX = v3ExtFeaturesBX | 1<<avx512F | 1<<avx512Dq | 1<<avx512Cd | 1<<avx512Bw | 1<<avx512Vl
 )
 
 const (
-	lahf_lm = 0
-	abm     = 5
+	lahfLm = 0
+	abm    = 5
 
-	v2ExtFeatureCX = 1 << lahf_lm
+	v2ExtFeatureCX = 1 << lahfLm
 	v3ExtFeatureCX = v2ExtFeatureCX | 1<<abm
 )
 
 const (
 	// XCR0
-	xmm       = 1
-	ymm       = 2
-	opmask    = 5
-	zmm_hi16  = 6
-	zmm_hi256 = 7
+	xmm      = 1
+	ymm      = 2
+	opmask   = 5
+	zmmHi16  = 6
+	zmmHi256 = 7
 
 	v3OSSupport = 1<<xmm | 1<<ymm
-	v4OSSupport = v3OSSupport | 1<<opmask | 1<<zmm_hi16 | 1<<zmm_hi256
+	v4OSSupport = v3OSSupport | 1<<opmask | 1<<zmmHi16 | 1<<zmmHi256
 )
 
 func detectVersion() int {
