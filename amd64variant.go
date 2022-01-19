@@ -5,7 +5,11 @@ package archvariant
 
 import (
 	"fmt"
+	"sync"
 )
+
+var cacheOnce sync.Once
+var amdVariantCache string
 
 func cpuid(ax, cx uint32) (eax, ebx, ecx, edx uint32)
 func xgetbv() (eax uint32)
@@ -129,5 +133,8 @@ func detectVersion() int {
 }
 
 func AMD64Variant() string {
-	return "v" + fmt.Sprintf("%d", detectVersion())
+	cacheOnce.Do(func() {
+		amdVariantCache = "v" + fmt.Sprintf("%d", detectVersion())
+	})
+	return amdVariantCache
 }
